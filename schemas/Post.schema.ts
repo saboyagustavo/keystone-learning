@@ -1,11 +1,24 @@
 import { allowAll } from '@keystone-6/core/access';
 import { relationship, select, text, timestamp } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
+import { document } from '@keystone-6/fields-document';
 
 export const Post = list({
   access: allowAll,
   fields: {
     title: text(),
+    content: document({
+      formatting: true,
+      links: true,
+      dividers: true,
+      layouts: [
+        [1, 1],
+        [1, 1, 1],
+        [2, 1],
+        [1, 2],
+        [1, 2, 1],
+      ],
+    }),
     publishedAt: timestamp(),
     status: select({
       options: [
